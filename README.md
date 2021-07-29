@@ -1,4 +1,4 @@
-# <div align="center"><img src="https://github.com/pranjalarora/Hostel-Booking-System/blob/master/img/book.png" width="48"> Hostel_Booking_System </div>
+# <div align="center"><img src="https://github.com/pranjalarora/Hostel-Booking-System/blob/master/img/book.png" width="48"> Hostel_Room_Booking_System </div>
 # Project Description
 
 The Online Hostel seat Booking System helps in booking the seats in the hostels. This also helps in keeping details of the hostellers and applied students. It will simplify the work of the institutions in getting the seats booked in the hostels with great ease. This system is designed to support the hostel management which helps them to save the records of the students about their rooms and vacant rooms in the hostel.

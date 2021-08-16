@@ -1,182 +1,180 @@
-#include <iostream>
-#include <algorithm>
-#include <string.h>
+#include <bits/stdc++.h>
 using namespace std;
-struct node
+struct HSTL
 {
-    int num = 1;
+    int NUMBER = 1;
     int fill = 0;
-    char name[3][10];
-    node *next;
-    node *prev;
+    char CUS_NAMES[3][10];
+    HSTL *NXT;
+    HSTL *PREVIOUS;
 };
 class hostel
 {
-    node *header[3];
-    node *cn;
+    HSTL *TITLE[3];
+    HSTL *WORDS;
 
 public:
     hostel()
     {
-        for (int i = 0; i < 3; i++)
-            header[i] = NULL;
+        for (int x = 0; x < 3; x++)
+            TITLE[x] = NULL;
     }
-    void create_booking()
+    void create()
     {
-        for (int i = 0; i < 3; i++)
+        for (int x = 0; x < 3; x++)
         {
-            for (int j = 0; j < 9; j++)
+            for (int y = 0; y < 9; y++)
             {
-                node *nn = new node;
-                nn->next = NULL;
-                nn->prev = NULL;
-                if (header[i] == NULL)
+                HSTL *ss = new HSTL;
+                ss->NXT = NULL;
+                ss->PREVIOUS = NULL;
+                if (TITLE[x] == NULL)
                 {
-                    header[i] = nn;
-                    nn->num = 1;
+                    TITLE[x] = ss;
+                    ss->NUMBER = 1;
                 }
                 else
                 {
-                    node *cn = header[i];
-                    while (cn->next != NULL)
+                    HSTL *WORDS = TITLE[x];
+                    while (WORDS->NXT != NULL)
                     {
-                        cn = cn->next;
+                        WORDS = WORDS->NXT;
                     }
-                    if (j == 3 || j == 5 || j == 7 || j == 8)
+                    if (y == 3 || y == 5 || y == 7 || y == 8)
                     {
-                        cn->num = 3;
+                        WORDS->NUMBER = 3;
                     }
-                    if (j == 2 || j == 4 || j == 6)
+                    if (y == 2 || y == 4 || y == 6)
                     {
-                        cn->num = 2;
+                        WORDS->NUMBER = 2;
                     }
-                    cn->next = nn;
-                    nn->prev = cn;
+                    WORDS->NXT = ss;
+                    ss->PREVIOUS = WORDS;
                 }
             }
         }
     }
     void display()
     {
-        int j = 0, k = 0, l = 0;
-        for (int i = 0; i < 48; i++)
+        int y = 0, z = 0, w = 0;
+        for (int x = 0; x < 48; x++)
         {
             cout << "--";
         }
         cout << "\n "
         ;
-        for (int i = 1; i < 4; i++)
+        for (int x = 1; x < 4; x++)
         {
-            cout << "| Floor number : "<< i << " \t\t";
+            cout << "| Floor number : "<< x << " \t\t";
         }
         cout << "|\n" ;
-        for (int i = 0; i < 48; i++)
+        for (int x = 0; x < 48; x++)
         {
             cout << "--";
         }
-        cn = header[j];
-        node *sn = header[j + 1];
-        node *tn = header[j + 2];
+        WORDS = TITLE[y];
+        HSTL *s = TITLE[y + 1];
+        HSTL *t = TITLE[y + 2];
         cout << "\n ";
-        while (cn != NULL)
+        while (WORDS != NULL)
         {
-            if (cn->fill != cn->num && cn->num != 0)
+            if (WORDS->fill != WORDS->NUMBER && WORDS->NUMBER != 0)
             {
-                j++;
-                cout << "| room no : "<< j;
-                cout << "->Vacant beds->"<< cn->num;
+                y++;
+                cout << "| room no : "<< y;
+                cout << "->Vacant cots->"<< WORDS->NUMBER;
             }
             else
             {
-                j++;
-                cout << "| room no : "<< j;
+                y++;
+                cout << "| room no : "<< y;
                 cout << "->Present ";
             }
-            if (sn->fill != sn->num && sn->num != 0)
+            if (s->fill != s->NUMBER && s->NUMBER != 0)
             {
-                k++;
-                cout << "\t | room no : "<< j;
-                cout << "->Vacant beds->"<< sn->num;
+                z++;
+                cout << "\t | room no : "<< y;
+                cout << "->Vacant cots->"<< s->NUMBER;
             }
             else
             {
-                k++;
-                cout << " \t | room no : "<< j;
+                z++;
+                cout << " \t | room no : "<< y;
                 cout << "->Present ";
             }
-            if (tn->fill != tn->num && tn->num != 0)
+            if (t->fill != t->NUMBER && t->NUMBER != 0)
             {
-                l++;
-                cout << "\t | room no : "<< j;
-                cout << "->Vacant beds->"<< tn->num << "| ";
+                w++;
+                cout << "\t | room no : "<< y;
+                cout << "->Vacant cots->"<< t->NUMBER << "| ";
             }
             else
             {
-                l++;
-                cout << "\t | room no : "<< j;
+                w++;
+                cout << "\t | room no : "<< y;
                 cout << "->Present "<< " | ";
             }
             cout << " \n ";
-            for (int i = 0; i < 48; i++)
+            for (int x = 0; x < 48; x++)
             {
                 cout << "--" ;
             }
             cout << "\n ";
-            cn = cn->next;
-            sn = sn->next;
-            tn = tn->next;
+            WORDS = WORDS->NXT;
+            s = s->NXT;
+            t = t->NXT;
         }
     }
-    void book(int people)
+    void booking(int people)
     {
-        int floor, room;
+        int fl, rom;
         cout << "\nEnter the floor number : ";
-        cin >> floor;
+        cin >> fl;
         try
         {
-            if (floor < 0 || floor > 4)
+            if (fl < 0 || fl > 4)
 
             {
-                throw(floor);
+                throw(fl);
             }
-            cn = header[floor - 1];
+            WORDS = TITLE[fl - 1];
 
             cout << "\nEnter the room number : ";
-            cin >> room;
+            cin >> rom;
             try
             {
 
-                if (room < 0 || room > 10)
+                if (rom < 0 || rom > 10)
                 {
-                    throw(room);
+                    throw(rom);
                 }
                 else
                 {
-                    int i = 1;
-                    while (i < room)
+                    int x = 1;
+                    while (x < rom)
                     {
-                        cn = cn->next;
-                        i++;
+                        WORDS = WORDS->NXT;
+                        x++;
                     }
-                    if (cn->num >= people)
+                    if (WORDS->NUMBER >= people)
                     {
                         cout << "\nroom is vacant you can apply for room" ;
 
                         int count = 0;
-                        while (cn->fill - 1 <= cn->num)
+                        while (WORDS->fill - 1 <= WORDS->NUMBER)
                         {
 
-                            cout << "\nEnter name "<< cn -> fill + 1 << " : ";
+                            cout << "\nEnter name "<< WORDS -> fill + 1 << " : ";
 
-                            cin >> cn->name[cn->fill];
+                            cin >> WORDS->CUS_NAMES[WORDS->fill];
                             count++;
-                            cn->fill++;
+                            WORDS->fill++;
                             if (count >= people)
                             {
                                 break;
                             }
                         }
-                        cn->num = cn->num - people;
+                        WORDS->NUMBER = WORDS->NUMBER - people;
                     }
 
                     else
@@ -195,11 +193,11 @@ public:
             cout << " \ninvalid floor number : " << r;
         }
     }
-    void cancle(int check)
+    void cancelled(int check)
     {
-        char namecheck[10];
-        int flag = 0;
-        int room, i = 1;
+        char checking_namess[10];
+        int fg = 0;
+        int rms, x = 1;
         try
         {
             if (check < 0 || check > 4)
@@ -210,46 +208,46 @@ public:
             else
             {
                 cout << " Enter the room no : ";
-                cin >> room;
+                cin >> rms;
                 try
                 {
-                    if (room < 0 || room > 10)
+                    if (rms < 0 || rms > 10)
                     {
-                        throw(room);
+                        throw(rms);
                     }
                     else
                     {
                         cout << " Enter the name to be delete :";
 
-                        cin >> namecheck;
-                        cn = header[check - 1];
-                        while (i < room)
+                        cin >> checking_namess;
+                        WORDS = TITLE[check - 1];
+                        while (x < rms)
                         {
-                            cn = cn->next;
-                            i++;
+                            WORDS = WORDS->NXT;
+                            x++;
                         }
-                        i = 0;
-                        while (i < 3)
+                        x = 0;
+                        while (x < 3)
                         {
 
-                            if (!strcmp(namecheck, cn -> name[i]))
+                            if (!strcmp(checking_namess, WORDS -> CUS_NAMES[x]))
 
                             {
-                                flag = 1;
+                                fg = 1;
                                 break;
-                                i = 0;
+                                x = 0;
                             }
                             else
-                                i++;
+                                x++;
                         }
-                        if (flag == 1 && cn->fill != 0)
+                        if (fg == 1 && WORDS->fill != 0)
                         {
-                            cout << "\nrecord deleted : "<< cn -> name[i];
+                            cout << "\nrecord deleted : "<< WORDS -> CUS_NAMES[x];
 
-                            cn->name[i][0] ='A';
-                            cn->name[i][1] ='\0';
-                            cn->fill--;
-                            cn->num++;
+                            WORDS->CUS_NAMES[x][0] ='A';
+                            WORDS->CUS_NAMES[x][1] ='\0';
+                            WORDS->fill--;
+                            WORDS->NUMBER++;
                         }
                         else
 
@@ -269,10 +267,10 @@ public:
             cout << " \n floor dosn't exist : " << r;
         }
     }
-    void upgrade(int check)
+    void modify(int check)
     {
-        char namecheck[10];
-        int room, i = 1;
+        char checking_namess[10];
+        int rms, x = 1;
         try
         {
             if (check < 0 || check > 4)
@@ -283,44 +281,44 @@ public:
             else
             {
                 cout << " Enter the room no : ";
-                cin >> room;
+                cin >> rms;
                 try
                 {
-                    if (room < 0 || room > 10)
+                    if (rms < 0 || rms > 10)
 
                     {
-                        throw(room);
+                        throw(rms);
                     }
                     else
                     {
                         cout << "Enter the name to be updated :";
 
-                        cin >> namecheck;
-                        cn = header[check - 1];
-                        while (i < room)
+                        cin >> checking_namess;
+                        WORDS = TITLE[check - 1];
+                        while (x < rms)
                         {
-                            cn = cn->next;
-                            i++;
+                            WORDS = WORDS->NXT;
+                            x++;
                         }
-                        i = 0;
-                        while (i < 3)
+                        x = 0;
+                        while (x < 3)
                         {
-                            if (!strcmp(namecheck, cn -> name[i]))
+                            if (!strcmp(checking_namess, WORDS -> CUS_NAMES[x]))
 
                             {
                                 cout << "\nenter updated name : " ;
 
-                                cin >> cn->name[i];
+                                cin >> WORDS->CUS_NAMES[x];
                                 break;
                             }
                             else
-                                i++;
+                                x++;
                         }
-                        if (i >= 3)
+                        if (x >= 3)
                             cout << "record not found ";
                         else
                         {
-                            cout << "\nrecord updated\nprevious name : "<< namecheck << "\nupdated name : "<< cn->name[i];
+                            cout << "\nrecord updated\nprevious name : "<< checking_namess << "\nupdated name : "<< WORDS->CUS_NAMES[x];
                         }
                     }
                 }
@@ -332,6 +330,7 @@ public:
         }
 
         catch (int r)
+
         {
             cout << "\n floor dosn't exist : "<< r;
         }
@@ -340,61 +339,57 @@ public:
 int main()
 {
 
-    hostel obj;
-    int key;
-    char ch;
-    int floorcheck;
-    obj.create_booking();
+    hostel objectives;
+    int key_rooms;
+    char channels;
+    int checking_floors;
+    objectives.create();
     do
     {
-        cout << "\nWELCOME TO THE HOSTEL ROOM BOOKING PORTAL.\n1.Book a single room \n2.Book a double room\n3.Book a room for 3 people\n4.Display the current status of rooms\n5.Cancle a booking\n6.Update the booking\n7.Exit the portal"<< endl;
-        cout << " \nPress the required key to proceed: "   ;
-        cin >> key;
-        switch (key)
+        cout << "\n1.Book a room for 1 person\n2.Book a room for 2person\n3.Book a room for 3 person\n4.Display the current status of rooms\n5.cancel a booking\n6.modify"<< endl;
+        cout << " Enter your choice : "   ;
+        cin >> key_rooms;
+        switch (key_rooms)
         {
         case 1:
         {
-            obj.book(1);
+            objectives.booking(1);
             break;
         }
         case 2:
         {
-            obj.book(2);
+            objectives.booking(2);
             break;
         }
         case 3:
         {
-            obj.book(3);
+            objectives.booking(3);
             break;
         }
         case 4:
         {
-            obj.display();
+            objectives.display();
             break;
         }
         case 5:
         {
             cout << "Enter floor number : ";
-            cin >> floorcheck;
-            obj.cancle(floorcheck);
+            cin >> checking_floors;
+            objectives.cancelled(checking_floors);
             break;
         }
         case 6:
         {
             cout << "Enter floor number : ";
-            cin >> floorcheck;
-            obj.upgrade(floorcheck);
+            cin >> checking_floors;
+            objectives.modify(checking_floors);
             break;
         }
-        case 7:
-        {
-            exit(0);
-            break;
-        }
+
         default:
-            cout << "\nInvalid entry ";
+            cout << "\nInvalid choice ";
         }
         cout << "\nDo you want to continue(Y / N) ";
-        cin >> ch;
-    } while (ch =='Y'|| ch =='y');
+        cin >> channels;
+    } while (channels =='Y'|| channels =='y');
 }
